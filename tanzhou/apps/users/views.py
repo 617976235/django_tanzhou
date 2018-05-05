@@ -44,14 +44,16 @@ class LoginView(View):
         if login_form.is_valid():
             user = authenticate(username=username, password=password)
             if user:
-                login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect(reverse('index'))
+                else:
+                    login_message = '用户未激活.'
+                    return render(request, 'login.html', locals())
             else:
-                login_message = '用户名或密码错误'
+                login_message = '用户名或密码错误.'
                 return render(request, 'login.html', locals())
         else:
-            print(login_form.errors)
-            # print(login_form.errors.usename)
             return render(request, 'login.html', locals())
 
 
@@ -65,22 +67,20 @@ class LogoutView(View):
 # 注册
 class RegisterView(View):
     def get(self, request):
+        # 显示验证码
         register_form = RegisterForm()
-        return render(request, 'register.html', {'register_form': register_form})
+        return render(request, 'register.html', locals())
 
     def post(self, request):
         register_form = RegisterForm(request.POST)
         email = request.POST.get('email')
         password = request.POST.get('password')
-
         # 表单验证
         if register_form.is_valid():
-
             # 验证用户名(邮箱)是否已经存在
             if UserInfo.objects.filter(email=email):
-                return render(request, 'register.html', {'register_form': register_form,
-                                                         'message': '用户已经存在!'})
-
+                register_message = '用户已经存在.'
+                return render(request, 'register.html', locals())
             # 保存用户信息
             user_info = UserInfo()
             user_info.username = email
@@ -88,13 +88,11 @@ class RegisterView(View):
             user_info.is_active = False
             user_info.password = make_password(password)
             user_info.save()
-
             # 发送邮件
             send_register_email(email, 'register')
-
             return HttpResponseRedirect(reverse('login'))
         else:
-            return render(request, 'register.html', {'register_form': register_form})
+            return render(request, 'register.html', locals())
 
 
 # 激活
@@ -108,5 +106,6 @@ class ActiveUserView(View):
                 user.is_active = True
                 user.save()
                 return render(request, 'success_activate.html')
-        return render(request, 'login.html')
+        else:
+            return render(request, 'register.html')
 
