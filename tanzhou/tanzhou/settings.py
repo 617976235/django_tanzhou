@@ -149,7 +149,7 @@ EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = '617976235@qq.com'
 EMAIL_HOST_PASSWORD = 'gcirkeizefetbeih'
-EMAIL_HOST_SSL = True
+EMAIL_USE_SSL = True
 EMAIL_FROM = '617976235@qq.com'
 
 # EMAIL_HOST_TLS = True
