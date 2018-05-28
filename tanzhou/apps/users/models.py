@@ -13,9 +13,9 @@ class UserInfo(AbstractUser):
                               default="female", verbose_name="性别")
     image = models.ImageField(upload_to="user_image/%Y/%m",
                               max_length=100, default="", verbose_name="头像")
-    phone = models.CharField(max_length=11, verbose_name="手机号码")
+    phone = models.CharField(null=True, blank=True, max_length=11, verbose_name="手机号码")
     qq = models.IntegerField(null=True, blank=True, verbose_name="QQ号码")
-    description = models.CharField(max_length=400, null=True, blank=True, verbose_name="用户简介")
+    description = models.CharField(null=True, blank=True, max_length=150, verbose_name="用户简介")
 
     class Meta:
         verbose_name_plural = "用户信息"

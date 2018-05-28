@@ -107,7 +107,7 @@
 <!--header 开始-->
 <!--   <div class="hbg">-->
 <div class="w1195 header">
-    <h1 class="logo fl"><a href="index.htm" target="_blank">
+    <h1 class="logo fl"><a href="" target="_blank">
         <img src="{% static 'images/logo.png' %}" alt="潭州课堂电商logo"/></a>
     </h1>
     <!-- 搜索关键字 -->
@@ -117,7 +117,7 @@
                 <i class="icon searchimg"></i>
                 <input type="text" placeholder="请输入课程标题的关键词" maxlength="15" class="inputtext" id="searchKey"/>
             </div>
-            <a href=" " onclick="searchCourse();" class="seabut">搜索课程</a>
+            <a href="" onclick="searchCourse();" class="seabut">搜索课程</a>
         </div>
         <div class="seaword">
         </div>
@@ -128,13 +128,13 @@
             <div class="" id="">
                 <div class="personal fr">
                     <a href="{% url 'index' %}" target="_blank" class="perimg"><img
-                            src="{% static 'images/default.png' %}" id="imgId1"></a>
+                            src="{{ MEDIA_URL }}{{ request.user.image }}" id="imgId1"></a>
                     <div class="peohover">
                         <i class="icon pericon"></i>
                         <ul class="perul">
-                            <li><a href="../i/course.htm" target="_blank">课表</a></li>
-                            <li><a href="../i/order.htm" target="_blank">我的订单</a></li>
-                            <li><a href="../i/profile.htm" target="_blank">个人信息</a></li>
+                            <li><a href="{% url 'i:course' %}" target="_blank">课表</a></li>
+                            <li><a href="{% url 'i:order' %}" target="_blank">我的订单</a></li>
+                            <li><a href="{% url 'i:info' %}" target="_blank">个人信息</a></li>
                             <li><a href="{% url 'logout' %}" class="pertopbor" id="logout">退出</a></li>
                         </ul>
                     </div>
@@ -177,7 +177,7 @@
             <div class="navigation">
                 <ul>
                     <li><a href="{% url 'index' %}" target="_blank">首页</a></li>
-                    <li><a href="list.htm" target="_blank">全部课程</a></li>
+                    <li><a href="{% url 'course:list' %}" target="_blank">全部课程</a></li>
                     <!-- <li><a href="http://bbs.tanzhouedu.com/" target="_blank">社区</a></li> -->
                     <li>
                         <a href="../help/downloadApp" target="_blank">客户端</a>
@@ -700,27 +700,27 @@
                 {% if request.user.is_authenticated %}
                     <div id="loginShow" class="login-succ plr12">
                         <div align="center" class="login-img">
-                            <!--
+
                         	<div class="fr login-name">
-                            	<a href="../i/course.htm" target="_blank" id="nick"></a>
+                            	<a href="{% url 'i:homework' %}" target="_blank" id="nick"></a>
                             </div>
-                            -->
-                            <a href="../i/course.htm" target="_blank"><img src="{% static 'images/default.png' %}"
+
+                            <a href="{% url 'i:info' %}" target="_blank"><img src="{{ MEDIA_URL }}{{ request.user.image }}"
                                                                            alt="个人图像" id="imgId"/></a>
                             <div class="clear"></div>
                         </div>
                         <br>
                         <div class="login-perinfor">
-                            <a href="../i/course.htm" class="percourse" target="_blank">
-                                <!--
-                                <span class="cournum" id="userCourse"></span>
-                                -->
+                            <a href="{% url 'i:course' %}" class="percourse" target="_blank">
+
+                                <span class="cournum" id="userCourse">111</span>
+
                                 <span class="courtitle">课程</span>
                             </a>
-                            <a href="../i/order.htm" class="percourse mlr9" target="_blank">
-                                <!--
-                                <span class="cournum" id="userOrder"></span>
-                                -->
+                            <a href="{% url 'i:order' %}" class="percourse mlr9" target="_blank">
+
+                                <span class="cournum" id="userOrder">111</span>
+
                                 <span class="odertitle">订单</span>
                             </a>
                             <!--<a href="/studentAdmin/main.html#collection" class="percourse" target="_blank">-->

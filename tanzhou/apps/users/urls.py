@@ -13,11 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-# from django.conf.urls import url
+from django.conf.urls import url
+from users.views import UserInfoView, ChangePwdView, UploadImageView, UserOrderView, UserWorkView, UserCourseView
 
-'''
+
 urlpatterns = [
-    url(r'^index/$', IndexView.as_view(), name='index'),
+    # 用户信息
+    url(r'info/$', UserInfoView.as_view(), name='info'),
+    # 修改密码
+    url(r'change_pwd/$', ChangePwdView.as_view(), name='change_pwd'),
+    # 用户头像上传
+    url(r'image_upload/$', UploadImageView.as_view(), name="image_upload"),
+    # 我的订单
+    url(r'order/$', UserOrderView.as_view(), name="order"),
+    # 我的作业
+    url(r'homework/$', UserWorkView.as_view(), name="homework"),
+    # 我的课程
+    url(r'course/$', UserCourseView.as_view(), name="course"),
 ]
-'''
+
 
