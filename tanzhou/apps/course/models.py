@@ -20,7 +20,8 @@ class CourseClass(models.Model):
         verbose_name_plural = "课程第一分类"
 
     def __str__(self):
-        return self.name
+        # 显示外键的中文名称
+        return self.get_name_display()
 
 
 class CourseSort(models.Model):

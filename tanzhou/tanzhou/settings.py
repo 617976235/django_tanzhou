@@ -47,7 +47,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'course.apps.CourseConfig',
+    # 图形码的包
     'captcha',
+    # 分页器的包,如果安装分页器的包后,这里没有提示,重启pycharm试试.
+    'pure_pagination',
+    # bootstrap4包引入。重启pycharm生效。
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +78,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 全局上下文信息,配置media路径全局可用.
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -154,3 +161,14 @@ EMAIL_FROM = '617976235@qq.com'
 
 # EMAIL_HOST_TLS = True
 # EMAIL_PORT = 587/25
+
+#  配置关于文件上传的设置
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 分页器设置
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 3,
+    'MARGIN_PAGES_DISPLAYED': 1,
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}

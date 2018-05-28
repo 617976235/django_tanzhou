@@ -1,6 +1,7 @@
 from django.contrib import admin
 from course.models import CourseClass, CourseSort, Course, Lesson, Teacher, Buy
 
+
 # Register your models here.
 
 
@@ -14,8 +15,8 @@ class CourseClassAdmin(admin.ModelAdmin):
 @admin.register(CourseSort)
 class CourseSortAdmin(admin.ModelAdmin):
     list_display = ['classes', 'name']
-    search_fields = ['name', 'classes']
-    list_filter = ['name']
+    search_fields = ['classes', 'name']
+    list_filter = ['classes']
 
 
 @admin.register(Course)

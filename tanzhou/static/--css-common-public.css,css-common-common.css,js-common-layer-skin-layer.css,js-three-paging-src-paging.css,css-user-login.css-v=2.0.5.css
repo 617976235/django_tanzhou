@@ -911,8 +911,7 @@ span, i, em, a {
 }
 
 .login-succ {
-    position: relative;
-    text-align: center;
+    position: relative
 }
 
 .percourse {
@@ -6107,7 +6106,7 @@ span, i, em, a {
 }
 
 .none {
-    display: none;
+    display: none
 }
 
 .pagbg {
